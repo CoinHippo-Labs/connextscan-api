@@ -1,107 +1,5 @@
 module.exports = {
   mainnet: [
-    /*
-    {
-      id: 'usdt',
-      symbol: 'USDT',
-      name: 'Tether',
-      image: '/logos/assets/usdt.png',
-      coingecko_id: 'tether',
-      is_stablecoin: true,
-      contracts: [
-        {
-          contract_address: '0xdac17f958d2ee523a2206206994597c13d831ec7',
-          chain_id: 1,
-          decimals: 6,
-        },
-        {
-          contract_address: '0x55d398326f99059ff775485246999027b3197955',
-          chain_id: 56,
-          decimals: 18,
-        },
-        {
-          contract_address: '0xc2132d05d31c914a87c6611c10748aeb04b58e8f',
-          chain_id: 137,
-          decimals: 6,
-        },
-        {
-          contract_address: '0x94b008aa00579c1307b0ef2c499ad98a8ce58e58',
-          chain_id: 10,
-          decimals: 6,
-        },
-        {
-          contract_address: '0x4ecaba5870353805a9f068101a40e0f32ed605c6',
-          chain_id: 100,
-          decimals: 6,
-        },
-        {
-          contract_address: '0xfd086bc7cd5c481dcc9c85ebe478a1c0b69fcbb9',
-          chain_id: 42161,
-          decimals: 6,
-        },
-        {
-          contract_address: '0x52484E1ab2e2B22420a25c20FA49E173a26202Cd',
-          chain_id: 42170,
-          decimals: 6,
-        },
-        {
-          contract_address: '0xc7198437980c041c805a1edcba50c1ce5db95118',
-          chain_id: 43114,
-          decimals: 6,
-          symbol: 'USDT.e',
-        },
-        {
-          contract_address: '0x049d68029688eabf473097a2fc38ef61633a3c7a',
-          chain_id: 250,
-          decimals: 6,
-          symbol: 'fUSDT',
-        },
-        {
-          contract_address: '0x8e70cd5b4ff3f62659049e74b6649c6603a0e594',
-          chain_id: 1284,
-          decimals: 6,
-          symbol: 'madUSDT',
-        },
-        {
-          contract_address: '0xb44a9b6905af7c801311e8f4e76932ee959c663c',
-          chain_id: 1285,
-          decimals: 6,
-          symbol: 'USDT',
-        },
-        {
-          contract_address: '0xfadbbf8ce7d5b7041be672561bba99f79c532e10',
-          chain_id: 122,
-          decimals: 6,
-        },
-        {
-          contract_address: '0xab58da63dfdd6b97eaab3c94165ef6f43d951fb2',
-          chain_id: 2001,
-          decimals: 6,
-          symbol: 'madUSDT',
-        },
-        {
-          contract_address: '0x5de1677344d3cb0d7d465c10b72a8f60699c062d',
-          chain_id: 288,
-          decimals: 6,
-        },
-        {
-          contract_address: '0x3c2b8be99c50593081eaa2a724f0b8285f5aba8f',
-          chain_id: 1666600000,
-          decimals: 6,
-        },
-        {
-          contract_address: '0x66e428c3f67a68878562e79a0234c1f83c208770',
-          chain_id: 25,
-          decimals: 6,
-        },
-        {
-          contract_address: '0x7ff4a56b32ee13d7d4d405887e0ea37d61ed919e',
-          chain_id: 9001,
-          decimals: 6,
-        },
-      ],
-    },
-    */
     {
       id: 'usdc',
       symbol: 'USDC',
@@ -182,11 +80,6 @@ module.exports = {
           is_pool: true,
         },
         /*{
-          contract_address: '0xff970a61a04b1ca14834a43f5de4533ebddb5cc8',
-          chain_id: 42161,
-          decimals: 6,
-        },
-        {
           contract_address: '0x750ba8b76187092B0D1E87E28daaf484d1b5273b',
           chain_id: 42170,
           decimals: 6,
@@ -249,6 +142,148 @@ module.exports = {
     },
     /*
     {
+      id: 'usdt',
+      symbol: 'USDT',
+      name: 'Tether',
+      image: '/logos/assets/usdt.png',
+      coingecko_id: 'tether',
+      is_stablecoin: true,
+      contracts: [
+        {
+          contract_address: '0xdAC17F958D2ee523a2206206994597C13D831ec7',
+          chain_id: 1,
+          decimals: 6,
+        },
+        {
+          contract_address: '0x55d398326f99059fF775485246999027B3197955',
+          chain_id: 56,
+          decimals: 18,
+          symbol: 'USDT',
+          next_asset: {
+            contract_address: '0xD609f26B5547d5E31562B29150769Cb7c774B97a',
+            decimals: 6,
+            symbol: 'nextUSDT',
+            image: '/logos/assets/nextusdt.png',
+          },
+          is_pool: true,
+        },
+        {
+          contract_address: '0xc2132D05D31c914a87C6611C10748AEb04B58e8F',
+          chain_id: 137,
+          decimals: 6,
+          symbol: 'USDT',
+          next_asset: {
+            contract_address: '0xE221C5A2a8348f12dcb2b0e88693522EbAD2690f',
+            decimals: 6,
+            symbol: 'nextUSDT',
+            image: '/logos/assets/nextusdt.png',
+          },
+          is_pool: true,
+        },
+        {
+          contract_address: '0x94b008aA00579c1307B0EF2c499aD98a8ce58e58',
+          chain_id: 10,
+          decimals: 6,
+          symbol: 'USDT',
+          next_asset: {
+            contract_address: '0x4cBB28FA12264cD8E87C62F4E1d9f5955Ce67D20',
+            decimals: 6,
+            symbol: 'nextUSDT',
+            image: '/logos/assets/nextusdt.png',
+          },
+          is_pool: true,
+        },
+        {
+          contract_address: '0xFd086bC7CD5C481DCC9C85ebE478A1C0b69FCbb9',
+          chain_id: 42161,
+          decimals: 6,
+          symbol: 'USDT',
+          next_asset: {
+            contract_address: '0x2fD7E61033b3904c65AA9A9B83DCd344Fa19Ffd2',
+            decimals: 6,
+            symbol: 'nextUSDT',
+            image: '/logos/assets/nextusdt.png',
+          },
+          is_pool: true,
+        },
+        {
+          contract_address: '0x4ECaBa5870353805a9F068101A40E0f32ed605C6',
+          chain_id: 100,
+          decimals: 6,
+          symbol: 'USDT',
+          next_asset: {
+            contract_address: '0xF4d944883D6FddC56d3534986feF82105CaDbfA1',
+            decimals: 6,
+            symbol: 'nextUSDT',
+            image: '/logos/assets/nextusdt.png',
+          },
+          is_pool: true,
+        },
+        {
+          contract_address: '0x52484E1ab2e2B22420a25c20FA49E173a26202Cd',
+          chain_id: 42170,
+          decimals: 6,
+        },
+        {
+          contract_address: '0xc7198437980c041c805a1edcba50c1ce5db95118',
+          chain_id: 43114,
+          decimals: 6,
+          symbol: 'USDT.e',
+        },
+        {
+          contract_address: '0x049d68029688eabf473097a2fc38ef61633a3c7a',
+          chain_id: 250,
+          decimals: 6,
+          symbol: 'fUSDT',
+        },
+        {
+          contract_address: '0x8e70cd5b4ff3f62659049e74b6649c6603a0e594',
+          chain_id: 1284,
+          decimals: 6,
+          symbol: 'madUSDT',
+        },
+        {
+          contract_address: '0xb44a9b6905af7c801311e8f4e76932ee959c663c',
+          chain_id: 1285,
+          decimals: 6,
+          symbol: 'USDT',
+        },
+        {
+          contract_address: '0xfadbbf8ce7d5b7041be672561bba99f79c532e10',
+          chain_id: 122,
+          decimals: 6,
+        },
+        {
+          contract_address: '0xab58da63dfdd6b97eaab3c94165ef6f43d951fb2',
+          chain_id: 2001,
+          decimals: 6,
+          symbol: 'madUSDT',
+        },
+        {
+          contract_address: '0x5de1677344d3cb0d7d465c10b72a8f60699c062d',
+          chain_id: 288,
+          decimals: 6,
+        },
+        {
+          contract_address: '0x3c2b8be99c50593081eaa2a724f0b8285f5aba8f',
+          chain_id: 1666600000,
+          decimals: 6,
+        },
+        {
+          contract_address: '0x66e428c3f67a68878562e79a0234c1f83c208770',
+          chain_id: 25,
+          decimals: 6,
+        },
+        {
+          contract_address: '0x7ff4a56b32ee13d7d4d405887e0ea37d61ed919e',
+          chain_id: 9001,
+          decimals: 6,
+        },
+      ],
+    },
+    */
+    /*
+    {
       id: 'dai',
       symbol: 'DAI',
       name: 'Dai',
@@ -257,24 +292,61 @@ module.exports = {
       is_stablecoin: true,
       contracts: [
         {
-          contract_address: '0x6b175474e89094c44da98b954eedeac495271d0f',
+          contract_address: '0x6B175474E89094C44Da98b954EedeAC495271d0F',
           chain_id: 1,
           decimals: 18,
         },
         {
-          contract_address: '0x1af3f329e8be154074d8769d1ffa4ee058b1dbc3',
+          contract_address: '0x1AF3F329e8BE154074D8769D1FFa4eE058B1DBc3',
           chain_id: 56,
           decimals: 18,
+          symbol: 'DAI',
+          next_asset: {
+            contract_address: '0x86a343BCF17D79C475d300eed35F0145F137D0c9',
+            decimals: 18,
+            symbol: 'nextDAI',
+            image: '/logos/assets/nextdai.png',
+          },
+          is_pool: true,
         },
         {
-          contract_address: '0x8f3cf7ad23cd3cadbd9735aff958023239c6a063',
+          contract_address: '0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063',
           chain_id: 137,
           decimals: 18,
+          symbol: 'DAI',
+          next_asset: {
+            contract_address: '0xaDCe87b14d570665222C1172D18a221BF7690d5a',
+            decimals: 18,
+            symbol: 'nextDAI',
+            image: '/logos/assets/nextdai.png',
+          },
+          is_pool: true,
         },
         {
-          contract_address: '0xda10009cbd5d07dd0cecc66161fc93d7c9000da1',
+          contract_address: '0xDA10009cBd5D07dd0CeCc66161FC93D7c9000da1',
           chain_id: 10,
           decimals: 18,
+          symbol: 'DAI',
+          next_asset: {
+            contract_address: '0xd64Bd028b560bbFc732eA18f282c64B86F3468e0',
+            decimals: 18,
+            symbol: 'nextDAI',
+            image: '/logos/assets/nextdai.png',
+          },
+          is_pool: true,
+        },
+        {
+          contract_address: '0xDA10009cBd5D07dd0CeCc66161FC93D7c9000da1',
+          chain_id: 42161,
+          decimals: 18,
+          symbol: 'DAI',
+          next_asset: {
+            contract_address: '0xfDe99b3B3fbB69553D7DaE105EF34Ba4FE971190',
+            decimals: 18,
+            symbol: 'nextDAI',
+            image: '/logos/assets/nextdai.png',
+          },
+          is_pool: true,
         },
         {
           contract_address: '0x0000000000000000000000000000000000000000',
@@ -282,11 +354,13 @@ module.exports = {
           decimals: 18,
           symbol: 'xDAI',
           image: '/logos/assets/xdai.png',
-        },
-        {
-          contract_address: '0xda10009cbd5d07dd0cecc66161fc93d7c9000da1',
-          chain_id: 42161,
-          decimals: 18,
+          next_asset: {
+            contract_address: '0x0e1D5Bcd2Ac5CF2f71841A9667afC1E995CaAf4F',
+            decimals: 18,
+            symbol: 'nextDAI',
+            image: '/logos/assets/nextdai.png',
+          },
+          is_pool: true,
         },
         {
           contract_address: '0xda10009cbd5d07dd0cecc66161fc93d7c9000da1',
@@ -436,11 +510,6 @@ module.exports = {
         },
         /*{
           contract_address: '0x0000000000000000000000000000000000000000',
-          chain_id: 42161,
-          decimals: 18,
-        },
-        {
-          contract_address: '0x0000000000000000000000000000000000000000',
           chain_id: 42170,
           decimals: 18,
         },
@@ -529,13 +598,13 @@ module.exports = {
           decimals: 8,
         },
         {
-          contract_address: '0x8e5bbbb09ed1ebde8674cda39a0c169401db4252',
-          chain_id: 100,
+          contract_address: '0x2f2a2543b76a4166549f7aab2e75bef0aefc5b0f',
+          chain_id: 42161,
           decimals: 8,
         },
         {
-          contract_address: '0x2f2a2543b76a4166549f7aab2e75bef0aefc5b0f',
-          chain_id: 42161,
+          contract_address: '0x8e5bbbb09ed1ebde8674cda39a0c169401db4252',
+          chain_id: 100,
           decimals: 8,
         },
         {
