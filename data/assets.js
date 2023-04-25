@@ -140,7 +140,6 @@ module.exports = {
         },*/
       ],
     },
-    /*
     {
       id: 'usdt',
       symbol: 'USDT',
@@ -281,8 +280,6 @@ module.exports = {
         },
       ],
     },
-    */
-    /*
     {
       id: 'dai',
       symbol: 'DAI',
@@ -423,7 +420,6 @@ module.exports = {
         },
       ],
     },
-    */
     {
       id: 'eth',
       symbol: 'ETH',
