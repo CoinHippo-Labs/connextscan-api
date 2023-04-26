@@ -20,7 +20,7 @@ let {
 
 environment = process.env.ENVIRONMENT || environment;
 
-const chains_data = toArray(data?.chains?.[environment]);
+const chains_data = { ...data?.chains?.[environment] };
 const assets_data = toArray(data?.assets?.[environment]);
 
 module.exports = async (
