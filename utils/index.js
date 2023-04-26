@@ -16,8 +16,7 @@ const equalsIgnoreCase = (
   a,
   b,
 ) =>
-  (!a && !b) ||
-  a?.toLowerCase() === b?.toLowerCase();
+  (!a && !b) || a?.toLowerCase() === b?.toLowerCase();
 
 const toCase = (
   string,
@@ -51,9 +50,7 @@ const split = (
     [string] :
     (typeof string === 'string' ? string : '').split(delimiter).map(s => toCase(s, to_case))
   )
-  .filter(s =>
-    !filter_blank || s
-  );
+  .filter(s => !filter_blank || s);
 
 const toArray = (
   x,
@@ -62,19 +59,8 @@ const toArray = (
   filter_blank = true,
 ) =>
   Array.isArray(x) ?
-    x
-      .map(v =>
-        toCase(v, to_case)
-      )
-      .filter(v =>
-        !filter_blank || v
-      ) :
-    split(
-      x,
-      to_case,
-      delimiter,
-      filter_blank,
-    );
+    x.map(v => toCase(v, to_case)).filter(v => !filter_blank || v) :
+    split(x, to_case, delimiter, filter_blank);
 
 const find = (
   x,

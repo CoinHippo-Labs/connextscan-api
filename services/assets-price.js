@@ -20,8 +20,8 @@ let {
 
 environment = process.env.ENVIRONMENT || environment;
 
-const chains_data = data?.chains?.[environment] || [];
-const assets_data = data?.assets?.[environment] || [];
+const chains_data = toArray(data?.chains?.[environment]);
+const assets_data = toArray(data?.assets?.[environment]);
 
 module.exports = async (
   params = {},
@@ -54,20 +54,11 @@ module.exports = async (
             must: [
               { match: { price_timestamp } },
             ],
-            should:
-              assets.map(a => {
-                return {
-                  match: {
-                    asset_id: a,
-                  },
-                };
-              }),
+            should: assets.map(a => { return { match: { asset_id: a } }; }),
             minimum_should_match: 1,
           },
         },
-        {
-          size: assets.length,
-        },
+        { size: assets.length },
       );
 
     const data =

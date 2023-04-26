@@ -275,7 +275,7 @@ module.exports = {
             ],
             nativeCurrency: {
               name: 'XDAI',
-              symbol: 'XDDAI',
+              symbol: 'XDAI',
               decimals: 18,
             },
             blockExplorerUrls: [
