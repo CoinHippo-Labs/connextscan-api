@@ -79,7 +79,8 @@ module.exports = {
           },
           is_pool: true,
         },
-        /*{
+        /*
+        {
           contract_address: '0x750ba8b76187092B0D1E87E28daaf484d1b5273b',
           chain_id: 42170,
           decimals: 6,
@@ -99,7 +100,7 @@ module.exports = {
           contract_address: '0x8f552a71efe5eefc207bf75485b356a0b3f01ec9',
           chain_id: 1284,
           decimals: 6,
-          symbol: 'madUSDC',
+          symbol: 'nextUSDC',
         },
         {
           contract_address: '0xe3f5a90f9cb311505cd691a46596599aa1a0ad7d',
@@ -116,7 +117,7 @@ module.exports = {
           contract_address: '0x5a955fddf055f2de3281d99718f5f1531744b102',
           chain_id: 2001,
           decimals: 6,
-          symbol: 'madUSDC',
+          symbol: 'nextUSDC',
         },
         {
           contract_address: '0x66a2a913e447d6b4bf33efbec43aaef87890fbbc',
@@ -137,7 +138,8 @@ module.exports = {
           contract_address: '0x51e44ffad5c2b122c8b635671fcc8139dc636e82',
           chain_id: 9001,
           decimals: 6,
-        },*/
+        },
+        */
       ],
     },
     {
@@ -223,6 +225,7 @@ module.exports = {
           chain_id: 42170,
           decimals: 6,
         },
+        /*
         {
           contract_address: '0xc7198437980c041c805a1edcba50c1ce5db95118',
           chain_id: 43114,
@@ -239,7 +242,7 @@ module.exports = {
           contract_address: '0x8e70cd5b4ff3f62659049e74b6649c6603a0e594',
           chain_id: 1284,
           decimals: 6,
-          symbol: 'madUSDT',
+          symbol: 'nextUSDT',
         },
         {
           contract_address: '0xb44a9b6905af7c801311e8f4e76932ee959c663c',
@@ -256,7 +259,7 @@ module.exports = {
           contract_address: '0xab58da63dfdd6b97eaab3c94165ef6f43d951fb2',
           chain_id: 2001,
           decimals: 6,
-          symbol: 'madUSDT',
+          symbol: 'nextUSDT',
         },
         {
           contract_address: '0x5de1677344d3cb0d7d465c10b72a8f60699c062d',
@@ -278,6 +281,7 @@ module.exports = {
           chain_id: 9001,
           decimals: 6,
         },
+        */
       ],
     },
     {
@@ -346,11 +350,11 @@ module.exports = {
           is_pool: true,
         },
         {
-          contract_address: '0x0000000000000000000000000000000000000000',
+          contract_address: '0xe91D153E0b41518A2Ce8Dd3D7944Fa863463a97d',
           chain_id: 100,
           decimals: 18,
-          symbol: 'xDAI',
-          image: '/logos/assets/xdai.png',
+          symbol: 'WXDAI',
+          image: '/logos/assets/wxdai.png',
           next_asset: {
             contract_address: '0x0e1D5Bcd2Ac5CF2f71841A9667afC1E995CaAf4F',
             decimals: 18,
@@ -359,6 +363,7 @@ module.exports = {
           },
           is_pool: true,
         },
+        /*
         {
           contract_address: '0xda10009cbd5d07dd0cecc66161fc93d7c9000da1',
           chain_id: 42170,
@@ -379,7 +384,7 @@ module.exports = {
           contract_address: '0xc234a67a4f840e61ade794be47de455361b52413',
           chain_id: 1284,
           decimals: 18,
-          symbol: 'madDAI',
+          symbol: 'nextDAI',
         },
         {
           contract_address: '0x80a16016cc4a2e6a2caca8a4a498b1699ff0f844',
@@ -396,7 +401,7 @@ module.exports = {
           contract_address: '0x41eafc40cd5cb904157a10158f73ff2824dc1339',
           chain_id: 2001,
           decimals: 18,
-          symbol: 'madDAI',
+          symbol: 'nextDAI',
         },
         {
           contract_address: '0xf74195bb8a5cf652411867c5c2c5b8c2a402be35',
@@ -418,6 +423,7 @@ module.exports = {
           chain_id: 9001,
           decimals: 18,
         },
+        */
       ],
     },
     {
@@ -504,7 +510,8 @@ module.exports = {
           },
           is_pool: true,
         },
-        /*{
+        /*
+        {
           contract_address: '0x0000000000000000000000000000000000000000',
           chain_id: 42170,
           decimals: 18,
@@ -524,7 +531,7 @@ module.exports = {
           contract_address: '0x30d2a9f5fdf90ace8c17952cbb4ee48a55d916a7',
           chain_id: 1284,
           decimals: 18,
-          symbol: 'madWETH',
+          symbol: 'nextWETH',
         },
         {
           contract_address: '0x639a647fbe20b6c8ac19e48e2de44ea792c62c5c',
@@ -542,7 +549,7 @@ module.exports = {
           contract_address: '0x5950f9b6ef36f3127ea66799e64d0ea1f5fdb9d1',
           chain_id: 2001,
           decimals: 18,
-          symbol: 'madWETH',
+          symbol: 'nextWETH',
         },
         {
           contract_address: '0x0000000000000000000000000000000000000000',
@@ -560,7 +567,8 @@ module.exports = {
           chain_id: 9001,
           decimals: 18,
           symbol: 'WETH',
-        },*/
+        },
+        */
       ],
     },
     /*
@@ -619,7 +627,7 @@ module.exports = {
           contract_address: '0x1dc78acda13a8bc4408b207c9e48cdbc096d95e0',
           chain_id: 1284,
           decimals: 8,
-          symbol: 'madWBTC',
+          symbol: 'nextWBTC',
         },
         {
           contract_address: '0x6ab6d61428fde76768d7b45d8bfeec19c6ef91a8',
@@ -636,7 +644,7 @@ module.exports = {
           contract_address: '0x48aeb7584ba26d3791f06fba360db435b3d7a174',
           chain_id: 2001,
           decimals: 8,
-          symbol: 'madWBTC',
+          symbol: 'nextWBTC',
         },
         {
           contract_address: '0xdc0486f8bf31df57a952bcd3c1d3e166e3d9ec8b',

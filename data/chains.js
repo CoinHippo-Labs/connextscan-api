@@ -274,8 +274,8 @@ module.exports = {
               'https://rpc.ankr.com/gnosis',
             ],
             nativeCurrency: {
-              name: 'xDAI',
-              symbol: 'xDAI',
+              name: 'XDAI',
+              symbol: 'XDDAI',
               decimals: 18,
             },
             blockExplorerUrls: [
