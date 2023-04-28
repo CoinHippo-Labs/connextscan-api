@@ -928,6 +928,29 @@ module.exports = {
       ],
     },
     {
+      id: 'matic',
+      symbol: 'MATIC',
+      name: 'Polygon',
+      image: '/logos/assets/matic.png',
+      coingecko_id: 'matic-network',
+      contracts: [
+        {
+          contract_address: '0x9c3C9283D3e44854697Cd22D3Faa240Cfb032889',
+          chain_id: 80001,
+          decimals: 18,
+          symbol: 'WMATIC',
+          image: '/logos/assets/wmatic.png',
+        },
+        {
+          contract_address: '0xcAA61BCAe7D37Fe9C33c0D8671448254eef44D63',
+          chain_id: 59140,
+          decimals: 18,
+          symbol: 'nextMATIC',
+          image: '/logos/assets/nextmatic.png',
+        },
+      ],
+    },
+    {
       id: 'tkn',
       symbol: 'TKN',
       name: 'TKN',
