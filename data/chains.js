@@ -670,6 +670,7 @@ module.exports = {
         coingecko_id: '',
         gas_coingecko_id: 'ethereum',
         unwrapper_contract: '0x2Eee7cB087c0430e40991f7E37De44Ec248a9F45',
+        relayer_fee: '1500000000',
       },
       {
         id: 'zksync',
