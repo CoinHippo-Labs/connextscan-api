@@ -3,17 +3,9 @@ exports.handler = async (
   context,
   callback,
 ) => {
-  const config = require('config-yml');
-
   const {
     getParams,
   } = require('./utils');
-
-  let {
-    environment,
-  } = { ...config };
-
-  environment = process.env.ENVIRONMENT || environment;
 
   // parse function event to req
   const req = {
@@ -32,23 +24,13 @@ exports.handler = async (
   switch (req.url) {
     case '/':
       const {
-        collection,
+        method,
       } = { ...params };
 
-      switch (params.module) {
-        case 'data':
-          const data = require('./data');
-
-          if (collection) {
-            response = data[collection]?.[environment];
-          }
-          else {
-            response = data;
-          }
-          break;
-        case 'assets-price':
+      switch (method) {
+        case 'getTokensPrice':
           try {
-            response = await require(`./services/${params.module}`)(params);
+            response = await require(`./services/${method}`)(params);
           } catch (error) {
             response = {
               error: true,

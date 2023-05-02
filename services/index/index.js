@@ -1,5 +1,6 @@
 const axios = require('axios');
 const _ = require('lodash');
+
 const {
   normalizeObject,
 } = require('./utils');
@@ -35,19 +36,13 @@ const crud = async (
     use_raw_data,
     update_only,
     track_total_hits,
-    height,
   } = { ...params };
 
   // normalize
   path = path || '';
-
   use_raw_data = typeof use_raw_data === 'boolean' ? use_raw_data : typeof use_raw_data !== 'string' || equalsIgnoreCase(use_raw_data, 'true');
   update_only = typeof update_only === 'boolean' ? update_only : typeof update_only !== 'string' || equalsIgnoreCase(update_only, 'true');
   track_total_hits = typeof track_total_hits === 'boolean' ? track_total_hits : typeof track_total_hits !== 'string' || equalsIgnoreCase(track_total_hits, 'true');
-
-  if (!isNaN(height)) {
-    height = Number(height);
-  }
 
   if (indexer_url && collection) {
     const _params = _.cloneDeep(params);
@@ -80,7 +75,6 @@ const crud = async (
     switch (method) {
       case 'get':
         path = path || `/${collection}/_doc/${id}`;
-
         response = await indexer.get(path, { params, auth }).catch(error => { return { data: { error: error?.response?.data } }; });
 
         const {
@@ -217,7 +211,6 @@ const crud = async (
       case 'delete':
       case 'remove':
         path = path || `/${collection}/_doc/${id}`;
-
         response = await indexer.delete(path, { params, auth }).catch(error => { return { data: { error: error?.response?.data } }; });
         break;
       default:

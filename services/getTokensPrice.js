@@ -1,27 +1,29 @@
 const _ = require('lodash');
 const moment = require('moment');
-const config = require('config-yml');
 
+const coingecko = require('./coingecko');
 const {
   read,
   write,
 } = require('./index');
-const coingecko = require('./coingecko');
+const {
+  getToken,
+} = require('../utils/config');
 const {
   sleep,
   equalsIgnoreCase,
   toArray,
 } = require('../utils');
-const data = require('../data');
 
-let {
-  environment,
-} = { ...config };
+const getTokenConfig = (id, _id) => {
+  const token = getToken(id);
 
-environment = process.env.ENVIRONMENT || environment;
+  const {
+    redirect,
+  } = { ...token };
 
-const chains_data = { ...data?.chains?.[environment] };
-const assets_data = toArray(data?.assets?.[environment]);
+  return redirect ? getTokenConfig(redirect, _id || id) : { ...token, id: _id || id };
+};
 
 module.exports = async (
   params = {},
@@ -63,47 +65,17 @@ module.exports = async (
 
     const data =
       assets.map(a => {
-        let asset_data = assets_data.find(_a => equalsIgnoreCase(_a?.id, a));
-
-        if (!asset_data) {
-          const chain_data = chains_data.evm.find(c => equalsIgnoreCase(_.head(c.provider_params)?.nativeCurrency?.symbol, a));
-
-          if (chain_data) {
-            const {
-              provider_params,
-              coingecko_id,
-              gas_coingecko_id,
-            } = { ...chain_data };
-
-            const {
-              nativeCurrency,
-            } = { ..._.head(provider_params) };
-
-            asset_data = {
-              id: a,
-              ...nativeCurrency,
-              coingecko_id: gas_coingecko_id || coingecko_id,
-            };
-          }
-        }
-
         const {
           id,
           coingecko_id,
-          name,
-          symbol,
-          image,
           is_stablecoin,
           default_price,
-        } = { ...asset_data };
+        } = { ...getTokenConfig(a) };
 
         return {
           id: `${id}_${price_timestamp}`,
           asset_id: id,
           coingecko_id,
-          name,
-          symbol,
-          image,
           price: is_stablecoin ? 1 : default_price || undefined,
         };
       });
@@ -123,8 +95,8 @@ module.exports = async (
     }
 
     const updated_at_threshold = current_time.subtract(1, 'hours').valueOf();
-    const to_update_data = data.filter(d => !d?.updated_at || d.updated_at < updated_at_threshold || typeof d.price !== 'number');
-    const coingecko_ids = _.uniq(toArray(to_update_data.map(d => d?.coingecko_id)));
+    const to_update_data = data.filter(d => !d.updated_at || d.updated_at < updated_at_threshold || typeof d.price !== 'number');
+    const coingecko_ids = _.uniq(toArray(to_update_data.map(d => d.coingecko_id)));
 
     if (coingecko_ids.length > 0) {
       let _data;
@@ -167,12 +139,9 @@ module.exports = async (
             current_price,
           } = { ...d };
 
-          const asset_data = assets_data.find(a => a?.coingecko_id === id) || data.find(d => d?.coingecko_id === id);
+          const asset_data = getTokenConfig(id) || data.find(d => d.coingecko_id === id);
 
           const {
-            name,
-            symbol,
-            image,
             is_stablecoin,
           } = { ...asset_data };
           let {
@@ -188,9 +157,6 @@ module.exports = async (
             id: `${asset_id}_${price_timestamp}`,
             asset_id,
             coingecko_id: id,
-            name,
-            symbol,
-            image,
             price,
           };
         })
@@ -215,7 +181,7 @@ module.exports = async (
         });
     }
 
-    const updated_data = data.filter(d => d?.asset_id && ('symbol' in d) && typeof d.price === 'number' && (!d.updated_at || d.updated_at < updated_at_threshold));
+    const updated_data = data.filter(d => d.asset_id && ('symbol' in d) && typeof d.price === 'number' && (!d.updated_at || d.updated_at < updated_at_threshold));
 
     if (updated_data.length > 0) {
       const synchronous = updated_data.length < 5;

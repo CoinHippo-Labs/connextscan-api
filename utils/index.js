@@ -62,24 +62,10 @@ const toArray = (
     x.map(v => toCase(v, to_case)).filter(v => !filter_blank || v) :
     split(x, to_case, delimiter, filter_blank);
 
-const find = (
-  x,
-  list = [],
-) =>
-  list.find(_x => typeof x === 'string' ? equalsIgnoreCase(_x, x) : _x === x);
-
-const includesStringList = (
-  x,
-  list = [],
-) =>
-  toArray(list).findIndex(s => toArray(x).findIndex(_x => _x.includes(s)) > -1) > -1;
-
 module.exports = {
   getParams,
   sleep,
   equalsIgnoreCase,
   split,
   toArray,
-  find,
-  includesStringList,
 };
