@@ -1,8 +1,0 @@
-##########################
-# Services Configuration #
-##########################
-
-environment: testnet # [testnet|mainnet]
-
-external_api:
-  coingecko: "https://api.coingecko.com/api/v3/"
