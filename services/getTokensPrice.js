@@ -181,7 +181,7 @@ module.exports = async (
         });
     }
 
-    const updated_data = data.filter(d => d.asset_id && ('symbol' in d) && typeof d.price === 'number' && (!d.updated_at || d.updated_at < updated_at_threshold));
+    const updated_data = data.filter(d => d.asset_id && typeof d.price === 'number' && (!d.updated_at || d.updated_at < updated_at_threshold));
 
     if (updated_data.length > 0) {
       const synchronous = updated_data.length < 5;
