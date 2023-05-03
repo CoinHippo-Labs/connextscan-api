@@ -139,7 +139,7 @@ module.exports = async (
             current_price,
           } = { ...d };
 
-          const asset_data = getTokenConfig(id) || data.find(d => d.coingecko_id === id);
+          const asset_data = getToken(id) || data.find(d => d.coingecko_id === id);
 
           const {
             is_stablecoin,
