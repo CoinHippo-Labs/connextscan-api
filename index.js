@@ -1,51 +1,38 @@
-exports.handler = async (
-  event,
-  context,
-  callback,
-) => {
-  const {
-    getParams,
-  } = require('./utils');
+exports.handler = async (event, context, callback) => {
+  const { getParams, errorOutput } = require('./utils/io');
 
   // parse function event to req
   const req = {
-    body: { ...(event.body && JSON.parse(event.body)) },
-    query: { ...event.queryStringParameters },
-    params: { ...event.pathParameters },
-    method: event.requestContext?.http?.method,
     url: (event.routeKey || '').replace('ANY ', ''),
+    method: event.requestContext?.http?.method,
     headers: event.headers,
+    params: { ...event.pathParameters },
+    query: { ...event.queryStringParameters },
+    body: { ...(event.body && JSON.parse(event.body)) },
   };
 
+  let output;
+  // create params from req
   const params = getParams(req);
-
-  let response;
 
   switch (req.url) {
     case '/':
-      const {
-        method,
-      } = { ...params };
-
+      const { method } = { ...params };
       switch (method) {
         case 'getTokensPrice':
           try {
-            response = await require(`./services/${method}`)(params);
+            output = await require(`./services/${method}`)(params);
           } catch (error) {
-            response = {
-              error: true,
-              code: 400,
-              message: error?.message,
-            };
+            output = errorOutput(error);
           }
           break;
         default:
           break;
       }
       break;
-   default:
+    default:
       break;
   }
 
-  return response;
+  return output;
 };

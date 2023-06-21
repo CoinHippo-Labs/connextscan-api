@@ -1,30 +1,10 @@
-const getParams = req => {
-  const {
-    query,
-    body,
-  } = { ...req };
-
-  return {
-    ...query,
-    ...body,
-  };
-};
-
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
-const equalsIgnoreCase = (
-  a,
-  b,
-) =>
-  (!a && !b) || a?.toLowerCase() === b?.toLowerCase();
+const equalsIgnoreCase = (a, b) => (!a && !b) || a?.toLowerCase() === b?.toLowerCase();
 
-const toCase = (
-  string,
-  to_case = 'normal',
-) => {
+const toCase = (string, to_case = 'normal') => {
   if (typeof string === 'string') {
     string = string.trim();
-
     switch (to_case) {
       case 'upper':
         string = string.toUpperCase();
@@ -36,7 +16,6 @@ const toCase = (
         break;
     }
   }
-
   return string;
 };
 
@@ -63,7 +42,6 @@ const toArray = (
     split(x, to_case, delimiter, filter_blank);
 
 module.exports = {
-  getParams,
   sleep,
   equalsIgnoreCase,
   split,

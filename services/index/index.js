@@ -1,25 +1,15 @@
 const axios = require('axios');
 const _ = require('lodash');
 
-const {
-  normalizeObject,
-} = require('./utils');
-const {
-  log,
-  equalsIgnoreCase,
-  toArray,
-} = require('../../utils');
+const { normalizeObject } = require('./utils');
+const { equalsIgnoreCase, toArray } = require('../../utils');
 
 // indexer credential
 const indexer_url = process.env.INDEXER_URL;
 const indexer_username = process.env.INDEXER_USERNAME;
 const indexer_password = process.env.INDEXER_PASSWORD;
 
-const service_name = 'index';
-
-const crud = async (
-  params = {},
-) => {
+const crud = async (params = {}) => {
   let response;
 
   // request parameters
@@ -45,8 +35,6 @@ const crud = async (
   track_total_hits = typeof track_total_hits === 'boolean' ? track_total_hits : typeof track_total_hits !== 'string' || equalsIgnoreCase(track_total_hits, 'true');
 
   if (indexer_url && collection) {
-    const _params = _.cloneDeep(params);
-
     delete params.collection;
     delete params.method;
     delete params.path;
@@ -55,7 +43,6 @@ const crud = async (
     delete params.update_only;
 
     const object_fields = ['query', 'aggs', 'sort', 'fields'];
-
     object_fields.forEach(f => {
       if (params[f]) {
         try {
@@ -65,7 +52,6 @@ const crud = async (
     });
 
     const indexer = axios.create({ baseURL: indexer_url, headers: { 'Accept-Encoding': 'gzip' } });
-
     const auth = {
       username: indexer_username,
       password: indexer_password,
@@ -75,56 +61,38 @@ const crud = async (
     switch (method) {
       case 'get':
         path = path || `/${collection}/_doc/${id}`;
-        response = await indexer.get(path, { params, auth }).catch(error => { return { data: { error: error?.response?.data } }; });
-
-        const {
-          _id,
-          _source,
-        } = { ...response?.data };
-
+        response = await indexer.get(path, { params, auth }).catch(error => { return { error: error?.response?.data }; });
+        const { _id, _source } = { ...response?.data };
         response = _source ? { data: { ..._source, id: _id } } : response;
         break;
       case 'set':
       case 'update':
         path = path || `/${collection}/_doc/${id}`;
-
         if (path.includes('/_update_by_query')) {
           try {
-            response = await indexer.post(path, params, { auth }).catch(error => { return { data: { error: error?.response?.data } }; });
+            response = await indexer.post(path, params, { auth }).catch(error => { return { error: error?.response?.data }; });
           } catch (error) {}
         }
         else {
-          response = await (path.includes('_update') ? indexer.post(path, { doc: params }, { auth }) : indexer.put(path, params, { auth })).catch(error => { return { data: { error: error?.response?.data } }; });
-
-          const {
-            error,
-          } = { ...response?.data };
-
+          response = await (path.includes('_update') ? indexer.post(path, { doc: params }, { auth }) : indexer.put(path, params, { auth })).catch(error => { return { error: error?.response?.data }; });
+          const { error } = { ...response };
           // retry with update / insert
           if (error) {
             path = path.replace(path.includes('_doc') ? '_doc' : '_update', path.includes('_doc') ? '_update' : '_doc');
-
             if (update_only && path.includes('_doc')) {
-              const _response = await indexer.get(path, { auth }).catch(error => { return { data: { error: error?.response?.data } }; });
-
-              const {
-                _id,
-                _source,
-              } = { ..._response?.data };
-
+              const _response = await indexer.get(path, { auth }).catch(error => { return { error: error?.response?.data }; });
+              const { _id, _source } = { ..._response?.data };
               if (_source) {
                 path = path.replace('_doc', '_update');
               }
             }
-
-            response = await (path.includes('_update') ? indexer.post(path, { doc: params }, { auth }) : indexer.put(path, params, { auth })).catch(error => { return { data: { error: error?.response?.data } }; });
+            response = await (path.includes('_update') ? indexer.post(path, { doc: params }, { auth }) : indexer.put(path, params, { auth })).catch(error => { return { error: error?.response?.data }; });
           }
         }
         break;
       case 'query':
       case 'search':
         path = path || `/${collection}/_search`;
-
         const search_data =
           use_raw_data ?
             params :
@@ -147,7 +115,6 @@ const crud = async (
                         .includes(k)
                       )
                       .map(([k, v]) => {
-                        // overide field from params
                         switch (k) {
                           case 'id':
                             if (!v && id) {
@@ -157,13 +124,7 @@ const crud = async (
                           default:
                             break;
                         }
-
-                        // set match query
-                        return {
-                          match: {
-                            [k]: v,
-                          },
-                        };
+                        return { match: { [k]: v } };
                       }),
                 },
               },
@@ -176,32 +137,20 @@ const crud = async (
           search_data.track_total_hits = track_total_hits;
         }
 
-        response = await indexer.post(path, search_data, { auth }).catch(error => { return { data: { error: error?.response?.data } }; });
-
-        const {
-          hits,
-          aggregations,
-        } = { ...response?.data };
-
+        response = await indexer.post(path, search_data, { auth }).catch(error => { return { error: error?.response?.data }; });
+        const { hits, aggregations } = { ...response?.data };
         response =
           hits?.hits || aggregations ?
             {
               data: {
-                data:
-                  toArray(hits?.hits)
-                    .map(d => {
-                      const {
-                        _id,
-                        _source,
-                        fields,
-                      } = { ...d };
-
-                      return {
-                        ..._source,
-                        ...fields,
-                        id: _id,
-                      };
-                    }),
+                data: toArray(hits?.hits).map(d => {
+                  const { _id, _source, fields } = { ...d };
+                  return {
+                    ..._source,
+                    ...fields,
+                    id: _id,
+                  };
+                }),
                 total: hits?.total?.value,
                 aggs: aggregations,
               },
@@ -211,64 +160,32 @@ const crud = async (
       case 'delete':
       case 'remove':
         path = path || `/${collection}/_doc/${id}`;
-        response = await indexer.delete(path, { params, auth }).catch(error => { return { data: { error: error?.response?.data } }; });
+        response = await indexer.delete(path, { params, auth }).catch(error => { return { error: error?.response?.data }; });
         break;
       default:
         break;
     }
 
-    if (response?.data) {
-      if (response.data.error) {
-        const {
-          error,
-        } = { ...response.data };
-
-        log(
-          'debug',
-          'indexer',
-          'request to opensearch',
-          {
-            params: _params,
-            error,
-          },
-        );
-
-        delete response.data.error;
-      }
-
-      response = response.data;
-    }
+    response = response?.data;
   }
 
   return response;
 };
 
-const get = async (
-  collection,
-  id,
-) =>
-  await crud(
-    {
-      method: 'get',
-      collection,
-      id,
-    },
-  );
+const get = async (collection, id) => await crud({ method: 'get', collection, id });
 
 const read = async (
   collection,
   query,
   params = {},
 ) =>
-  await crud(
-    {
-      method: 'query',
-      collection,
-      query,
-      use_raw_data: true,
-      ...params,
-    },
-  );
+  await crud({
+    method: 'query',
+    collection,
+    query,
+    use_raw_data: true,
+    ...params,
+  });
 
 const write = async (
   collection,
@@ -277,28 +194,16 @@ const write = async (
   update_only = false,
   is_update = true,
 ) =>
-  await crud(
-    {
-      method: 'set',
-      collection,
-      id,
-      path: is_update ? `/${collection}/_update/${id}` : undefined,
-      update_only,
-      ...data,
-    },
-  );
+  await crud({
+    method: 'set',
+    collection,
+    id,
+    path: is_update ? `/${collection}/_update/${id}` : undefined,
+    update_only,
+    ...data,
+  });
 
-const remove = async (
-  collection,
-  id,
-) =>
-  await crud(
-    {
-      method: 'delete',
-      collection,
-      id,
-    },
-  );
+const remove = async (collection, id) => await crud({ method: 'delete', collection, id });
 
 module.exports = {
   crud,

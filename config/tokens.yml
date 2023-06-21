@@ -38,9 +38,21 @@ kp3r:
   coingecko_id: "keep3rv1"
 klp:
   redirect: "eth"
+xoc:
+  coingecko_id: "tether"
+  is_stablecoin: true
+  default_price: 1.0
 test:
   is_stablecoin: true
   default_price: 1.0
 tkn:
   is_stablecoin: true
   default_price: 1.0
+ixt:
+  coingecko_id: "ix-token"
+alusd:
+  coingecko_id: "alchemix-usd"
+  is_stablecoin: true
+  default_price: 1.0
+aleth:
+  coingecko_id: "alchemix-eth"
