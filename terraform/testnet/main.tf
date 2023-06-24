@@ -35,8 +35,8 @@ data "aws_iam_policy_document" "policy" {
 }
 
 resource "aws_iam_role" "role" {
-  name                = "${var.project_name}-role-lambda-${var.environment}"
-  assume_role_policy  = data.aws_iam_policy_document.policy.json
+  name               = "${var.project_name}-role-lambda-${var.environment}"
+  assume_role_policy = data.aws_iam_policy_document.policy.json
 }
 
 resource "aws_iam_policy_attachment" "attachment" {
@@ -46,8 +46,8 @@ resource "aws_iam_policy_attachment" "attachment" {
 }
 
 resource "aws_opensearch_domain" "domain" {
-  domain_name     = "${var.project_name}-${var.environment}"
-  engine_version  = "OpenSearch_2.5"
+  domain_name    = "${var.project_name}-${var.environment}"
+  engine_version = "OpenSearch_2.5"
   cluster_config {
     instance_type            = "t3.small.search"
     instance_count           = 1
