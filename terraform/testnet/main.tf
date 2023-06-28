@@ -58,7 +58,7 @@ resource "aws_opensearch_domain" "domain" {
   ebs_options {
     ebs_enabled = true
     volume_type = "gp2"
-    volume_size = 12
+    volume_size = 10
   }
   encrypt_at_rest {
     enabled = true
@@ -118,7 +118,7 @@ resource "aws_lambda_function" "function" {
       INDEXER_PASSWORD = var.indexer_password
     }
   }
-  kms_key_arn      = ""
+  kms_key_arn = ""
 }
 
 resource "aws_apigatewayv2_api" "api" {
