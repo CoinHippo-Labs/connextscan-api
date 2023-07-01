@@ -1,0 +1,27 @@
+{
+  "name": "connextscan-api",
+  "version": "0.0.1",
+  "description": "API of Connextscan",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node index.js",
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CoinHippo-Labs/connextscan-api.git"
+  },
+  "author": "CoinHippo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/CoinHippo-Labs/connextscan-api/issues"
+  },
+  "homepage": "https://github.com/CoinHippo-Labs/connextscan-api#readme",
+  "dependencies": {
+    "axios": "^1.4.0",
+    "config-yml": "^0.10.3",
+    "lodash": "^4.17.21",
+    "moment": "^2.29.4"
+  }
+}

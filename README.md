@@ -11,6 +11,7 @@
 3. [Install terraform](https://learn.hashicorp.com/tutorials/terraform/install-cli)
 
 ```bash
+cd ./src
 yarn
 cd ./terraform/testnet
 cp variables.tf.example variables.tf

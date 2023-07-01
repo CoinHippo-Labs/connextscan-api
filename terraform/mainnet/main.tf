@@ -17,8 +17,8 @@ provider "archive" {}
 
 data "archive_file" "zip" {
   type        = "zip"
-  source_dir  = "../../"
-  excludes    = ["terraform", ".gitignore", "README.md", "yarn.lock"]
+  source_dir  = "../../src"
+  excludes    = ["yarn.lock"]
   output_path = "${var.package_name}.zip"
 }
 
@@ -118,7 +118,7 @@ resource "aws_lambda_function" "function" {
       INDEXER_PASSWORD = var.indexer_password
     }
   }
-  kms_key_arn = ""
+  kms_key_arn      = ""
 }
 
 resource "aws_apigatewayv2_api" "api" {
