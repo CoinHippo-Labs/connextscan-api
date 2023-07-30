@@ -56,3 +56,7 @@ alusd:
   default_price: 1.0
 aleth:
   coingecko_id: "alchemix-eth"
+alchemix:
+  coingecko_id: "alchemix"
+radar_test:
+  coingecko_id: "dappradar"
