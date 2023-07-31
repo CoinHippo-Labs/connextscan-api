@@ -58,5 +58,9 @@ aleth:
   coingecko_id: "alchemix-eth"
 alchemix:
   coingecko_id: "alchemix"
-radar_test:
+radar:
   coingecko_id: "dappradar"
+radar_test:
+  redirect: "radar"
+p8:
+  default_price: 1.0
