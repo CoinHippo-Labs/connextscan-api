@@ -42,14 +42,6 @@ xoc:
   coingecko_id: "tether"
   is_stablecoin: true
   default_price: 1.0
-test:
-  is_stablecoin: true
-  default_price: 1.0
-tkn:
-  is_stablecoin: true
-  default_price: 1.0
-ixt:
-  coingecko_id: "ix-token"
 alusd:
   coingecko_id: "alchemix-usd"
   is_stablecoin: true
@@ -60,7 +52,13 @@ alchemix:
   coingecko_id: "alchemix"
 radar:
   coingecko_id: "dappradar"
-radar_test:
-  redirect: "radar"
 p8:
   default_price: 1.0
+test:
+  is_stablecoin: true
+  default_price: 1.0
+tkn:
+  is_stablecoin: true
+  default_price: 1.0
+ixt:
+  coingecko_id: "ix-token"
