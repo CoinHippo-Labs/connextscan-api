@@ -54,6 +54,8 @@ radar:
   coingecko_id: "dappradar"
 p8:
   default_price: 1.0
+btrst:
+  coingecko_id: "braintrust"
 test:
   is_stablecoin: true
   default_price: 1.0
